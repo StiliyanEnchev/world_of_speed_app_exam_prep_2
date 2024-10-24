@@ -1,3 +1,4 @@
+{% load get_user %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -18,18 +19,19 @@
             ><span>World of Speed</span></a
             >
         </h1>
-        {% if profile %}
-            <nav>
-                <a href="#">Catalogue</a>
-                <a href="#">Create Car</a>
-                <a href="#">Profile</a>
+        {% get_user as profile %}
+        {% if not profile %}
+           <nav>
+                <a href="{% url 'create-profile' %}">Create Profile</a>
             </nav>
         {% else %}
             <nav>
-                <a href="{% url 'create-profile' %}">Create Profile</a>
+                <a href="#">Catalogue</a>
+                <a href="{% url 'create-car' %}">Create Car</a>
+                <a href="#">Profile</a>
             </nav>
-
         {% endif %}
+    
     </header>
 
     {% block content %}

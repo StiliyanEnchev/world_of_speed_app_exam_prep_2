@@ -35,4 +35,5 @@ class Car(models.Model):
     owner = models.ForeignKey(
         to=Profile,
         on_delete=models.CASCADE,
+        related_name='cars'
     )
