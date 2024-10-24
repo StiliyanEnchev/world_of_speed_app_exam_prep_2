@@ -13,6 +13,7 @@ class CarCreateView(CreateView):
     template_name = 'car-create.html'
     success_url = reverse_lazy('home')
 
+
     def form_valid(self, form):
         form.instance.owner = get_profile()
         return super().form_valid(form)

@@ -7,6 +7,10 @@ class BaseCarForm(forms.ModelForm):
     class Meta:
         model = Car
         exclude = ['owner']
+        widgets = {
+            'image_url': forms.URLInput(attrs={'placeholder': 'https://...'}),
+        }
+
 
 
 class CarCreateForm(BaseCarForm):

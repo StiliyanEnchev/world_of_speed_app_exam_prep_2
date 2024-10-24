@@ -25,7 +25,7 @@ class Car(models.Model):
 
     image_url = models.URLField(
         unique=True,
-        error_messages={'unique': "This image URL is already in use! Provide a new one."}
+        error_messages={'unique': "This image URL is already in use! Provide a new one."},
     )
 
     price = models.FloatField(
