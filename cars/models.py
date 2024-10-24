@@ -29,7 +29,7 @@ class Car(models.Model):
     )
 
     price = models.FloatField(
-        MinValueValidator(1.0)
+        validators=[MinValueValidator(1.0)]
     )
 
     owner = models.ForeignKey(

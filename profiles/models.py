@@ -19,7 +19,7 @@ class Profile(models.Model):
     email = models.EmailField()
 
     age = models.IntegerField(
-        MinValueValidator(21),
+        validators=[MinValueValidator(21)],
         help_text='Age requirement: 21 years and above.',
     )
 

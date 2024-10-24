@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/static/style/style.css"/>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}"/>
     <title>WorldOfSpeed</title>
 </head>
 
@@ -12,15 +14,22 @@
     <header>
         <!-- Navigation Bar -->
         <h1>
-            <a class="index-navigation" href="#"
+            <a class="index-navigation" href="{% url 'home' %}"
             ><span>World of Speed</span></a
             >
         </h1>
-        <nav>
-            <a href="#">Catalogue</a>
-            <a href="#">Create Car</a>
-            <a href="#">Profile</a>
-        </nav>
+        {% if profile %}
+            <nav>
+                <a href="#">Catalogue</a>
+                <a href="#">Create Car</a>
+                <a href="#">Profile</a>
+            </nav>
+        {% else %}
+            <nav>
+                <a href="{% url 'create-profile' %}">Create Profile</a>
+            </nav>
+
+        {% endif %}
     </header>
 
     {% block content %}
