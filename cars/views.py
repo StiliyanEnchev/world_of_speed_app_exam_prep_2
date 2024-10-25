@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from cars.forms import CarCreateForm, CarEditForm
+from cars.forms import CarCreateForm, CarEditForm, CarDeleteForm
 from cars.models import Car
 from common.utils import get_profile, get_cars
 
@@ -37,3 +37,16 @@ class CarEdit(UpdateView):
     form_class = CarEditForm
     template_name = 'car-edit.html'
     success_url = reverse_lazy('catalogue')
+
+
+class CarDelete(DeleteView):
+    model = Car
+    form_class = CarDeleteForm
+    template_name = 'car-delete.html'
+    success_url = reverse_lazy('catalogue')
+
+    def get_initial(self):
+        return self.object.__dict__
+
+    def form_invalid(self, form):
+        return self.form_valid(form)

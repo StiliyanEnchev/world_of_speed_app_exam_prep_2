@@ -4,7 +4,7 @@
 {% block content %} 
     
     {% get_user as profile %}
-    {% if not profile.cars %}
+    {% if profile.cars.all.count == 0 %}
         
     <!-- Display a paragraph: If there are no cars yet-->
     <p class="no-articles">No cars yet</p>

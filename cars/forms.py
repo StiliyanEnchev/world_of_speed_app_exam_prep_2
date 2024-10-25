@@ -1,6 +1,7 @@
 from django import forms
 
 from cars.models import Car
+from common.mixins import ReadOnlyMixin
 
 
 class BaseCarForm(forms.ModelForm):
@@ -21,5 +22,5 @@ class CarEditForm(BaseCarForm):
     pass
 
 
-class CarDeleteForm(BaseCarForm):
-    pass
+class CarDeleteForm(ReadOnlyMixin, BaseCarForm):
+    read_only_fields = ['type', 'model', 'year', 'image_url', 'price']
