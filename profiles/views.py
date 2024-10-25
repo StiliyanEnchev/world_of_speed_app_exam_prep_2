@@ -22,3 +22,4 @@ class ProfileDetailsView(DetailView):
     template_name = 'profile-details.html'
 
 
+
