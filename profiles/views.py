@@ -21,14 +21,17 @@ class ProfileCreateView(CreateView):
 class ProfileDetailsView(DetailView):
     model = Profile
     template_name = 'profile-details.html'
+
     def get_object(self, queryset=None):
         return get_profile()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         total_sum = sum(car.price for car in get_profile().cars.all())
+        profile_picture = get_profile().profile_picture
 
         context['total_sum'] = total_sum
-        context['items'] = Profile.objects.all()  # Fetch all items from YourModel
+        context['items'] = Profile.objects.all()
+        context['profile_picture'] = profile_picture
 
         return context
